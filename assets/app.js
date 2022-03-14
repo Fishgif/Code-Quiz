@@ -10,6 +10,10 @@ const questionChoices = document.getElementById("question-choices");
 const questionFeedback = document.getElementById('question-feedback');
 const formHighscore = document.getElementById('form-highscore');
 const inputInitials = document.getElementById("input-initials");
+const sectionHighscore = document.getElementById("section-highscore");
+const buttonPlayAgain = document.getElementById("button-play-again");
+const buttonClearHighscore = document.getElementById("button-clear-highscore");
+const listHighScore = document.getElementById("list-highscore");
 
 
 let timerId = null;
@@ -90,7 +94,7 @@ function showQuestion(index){
             // What if user clicks on correct choice
             
             const isCorrectChoice = event.target.getAttribute("data-answer") ==='true';
-            console.log(isCorrectChoice);
+            // console.log(isCorrectChoice);
 
             if(isCorrectChoice){
         // gives feed back its correct choice
@@ -151,6 +155,8 @@ sectionQuestions.classList.add('hide');
 spanFinalHighScore.textContent = timeRemaining;
 // High score  - highest time remaining 
 
+sectionTimer.classList.add('hide')
+
 }
 
 
@@ -176,8 +182,8 @@ highscore: timeRemaining,
 /**
  * @type {Array} existingHighscores
  */
-const existingHighscores = JSON.parse(localStorage.getItem('highscores')  || '[]')
 
+const existingHighscores = getHighscoresFromLocalStorage();
 // Add new HS
 existingHighscores.push(highscore)
 
@@ -189,18 +195,66 @@ existingHighscores.push(highscore)
 // After Submitting, redirect the user tot eh high score page
 console.log('done', existingHighscores)
 
+showHighscorePage()
 
+});
+
+
+/**
+ * 
+ * @returns {Array}
+ */
+
+function getHighscoresFromLocalStorage(){
+    return JSON.parse(
+        localStorage.getItem('highscores')  || '[]')
+
+}
+
+function showHighscorePage(){
+// Hide End Game page
+sectioninitials.classList.add('hide');
+sectionHighscore.classList.remove('hide');
+renderHighscoreList();
+}
+
+
+function renderHighscoreList(){
+// hspage
+// get existing HS local S
+const highscores = getHighscoresFromLocalStorage();
+
+listHighScore.textContent = "";
+
+// Creat li each item
+for (let index = 0; index < highscores.length; index++) {
+    const highscore = highscores[index];
+   
+    // add to lsit
+    const li = docment.createElement('li');
+    li.textContent - highscore.name + ' -- ' + highscore.highscore
+
+    listHighScore.appendChild(li);
+}
+
+
+
+
+}
+
+// 1. Click PLay again button
+buttonPlayAgain.addEventListener('click', function(event){
+    window.location.reload();
 
 })
 
-
-
-// HIGH SCORE SCREEN
-
-// 1. Click PLay again button
-// redirect the user tot eh landing page 
-
 // 2. Click on Clear Button
-// Clears the local storage
-// clears the dom
+buttonClearHighscore.addEventListener('click', function(event){
 
+// Clears the local storage
+localStorage.setItem('highscores', '[]');
+
+// clears the dom
+listHighScore.textContent = ""
+
+})

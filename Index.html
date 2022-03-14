@@ -49,21 +49,21 @@
 <section class="hide"  id="section-initials">
     <h1 >All done</h1>
     <h2>Your High Score is: <span id = "span-final-highscore"></span></h2>
-    
-    <form id="form-highscore"></form>
+
+    <form id="form-highscore">
 
     <label for="input-initials">Initials</label>
 
 <input id="input-initials" type="text">
 <button>Submit</button>
-
+</form>
 </section>
 
 <!-- High score -->
 <section class="hide"  id="section-highscore">
     <h1>High Score</h1>
 
-    <ul>
+    <ul id= "list-highscore">
         <li>1. Sam </li>
     
         <li>2. Chi </li>
@@ -71,10 +71,10 @@
 
     <!-- Back button -->
 
-    <button>Play Again</button>
+    <button id= "button-play-again">Play Again</button>
 
     <!-- Clear -->
-    <button>Clear</button>
+    <button id ="button-clear-highscore">Clear</button>
 </section>
 
 <script src="assets/questions.js"></script>
