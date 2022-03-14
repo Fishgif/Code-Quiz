@@ -1,15 +1,21 @@
-// Quiz Queations
-
 const questions = [
     {
-        title: "How are you? ",
+        title: "Who is the best WR pilot ",
         choices: [
             {
-                title: "Good",
+                title: "Voodoo",
                 isAns: true,
             },
             {
-                title: "Bad",
+                title: "The Good Rando",
+                isAns: false,
+            },
+            {
+                title: "Place Holder1",
+                isAns: false,
+            },
+            {
+                title: "Place Holder2",
                 isAns: false,
             },
         ],
@@ -26,5 +32,5 @@ const questions = [
                 isAns: false,
             },
         ],
-    }
-]
+    },
+];
