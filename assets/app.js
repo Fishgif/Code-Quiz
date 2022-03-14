@@ -2,7 +2,7 @@ const buttonStart = document.getElementById("button-start");
 const sectionQuestions = document.getElementById("section-questions");
 const sectionLanding = document.getElementById("section-landing");
 const sectionTimer = document.getElementById("section-timer");
-const sectioninitials = document.getElementById("section-initials");
+const sectionInitials = document.getElementById("section-initials");
 const spanTime = document.getElementById("span-time");
 const questionTitle = document.getElementById("question-title");
 const spanFinalHighScore = document.getElementById("span-final-highscore"); 
@@ -17,7 +17,7 @@ const listHighScore = document.getElementById("list-highscore");
 
 
 let timerId = null;
-let timeRemaining = 10;
+let timeRemaining = 20;
 
 let currentQuestionIndex = 0;
 spanTime.textContent = timeRemaining;
@@ -72,7 +72,7 @@ function showQuestion(index){
     const question = questions[index];
 
     questionTitle.textContent = question.title;
-    console.log(questionTitle);
+    
 
     // loop through choices
 
@@ -85,8 +85,17 @@ function showQuestion(index){
         
         const li = document.createElement('li');
 
+
         const button = document.createElement('button');
         button.textContent = choice.title;
+
+        button.addEventListener('click', function(event){
+            if(index + 1 >= questions.length){
+                return endGame()
+            }
+            showQuestion(index + 1)
+        });
+
         button.setAttribute('data-answer', choice.isAns);
 
         // When Click on choice
@@ -116,28 +125,6 @@ function showQuestion(index){
     };
 }
 
-// Start timer
-
-
-// showQuestion(0)
-
-
-
-
-// Should move onto next question
-
-
-
-
-// What if user clicks on Wrong choice
-// gives feed back its wrong choice
-// redcue the time ny 10 seconds
-
-// When the user clicks on the  questions the end Game screen comes up
-
-// What if user timer expires
-// End the game 
-
 function endGame(){
 // 1. Timer should stop
 clearInterval(timerId)
@@ -146,7 +133,7 @@ clearInterval(timerId)
 // End Game Screen
 // 1. Timer should stop
 // 2. Show end game screen
-sectioninitials.classList.remove('hide');
+sectionInitials.classList.remove('hide');
 
 // hide Questions setcion 
 sectionQuestions.classList.add('hide');
@@ -179,9 +166,6 @@ highscore: timeRemaining,
 
 }
 
-/**
- * @type {Array} existingHighscores
- */
 
 const existingHighscores = getHighscoresFromLocalStorage();
 // Add new HS
@@ -193,8 +177,6 @@ existingHighscores.push(highscore)
 
 
 // After Submitting, redirect the user tot eh high score page
-console.log('done', existingHighscores)
-
 showHighscorePage()
 
 });
@@ -202,7 +184,7 @@ showHighscorePage()
 
 /**
  * 
- * @returns {Array}
+ * @returns {Array} 
  */
 
 function getHighscoresFromLocalStorage(){
@@ -213,7 +195,7 @@ function getHighscoresFromLocalStorage(){
 
 function showHighscorePage(){
 // Hide End Game page
-sectioninitials.classList.add('hide');
+sectionInitials.classList.add('hide');
 sectionHighscore.classList.remove('hide');
 renderHighscoreList();
 }
@@ -224,6 +206,14 @@ function renderHighscoreList(){
 // get existing HS local S
 const highscores = getHighscoresFromLocalStorage();
 
+highscores.sort(function(a, b){
+    if(b.highscore > a.highscore){
+        return 1;
+    }else {
+        return -1;
+    }
+});
+
 listHighScore.textContent = "";
 
 // Creat li each item
@@ -231,14 +221,11 @@ for (let index = 0; index < highscores.length; index++) {
     const highscore = highscores[index];
    
     // add to lsit
-    const li = docment.createElement('li');
-    li.textContent - highscore.name + ' -- ' + highscore.highscore
+    const li = document.createElement('li');
+    li.textContent = highscore.name + ' -- ' + highscore.highscore
 
     listHighScore.appendChild(li);
-}
-
-
-
+    }
 
 }
 

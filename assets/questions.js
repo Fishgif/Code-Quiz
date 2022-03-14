@@ -1,35 +1,85 @@
 const questions = [
     {
-        title: "Who is the best WR pilot ",
+        title: "The series Friends is set in which city? ",
         choices: [
             {
-                title: "Voodoo",
+                title: "Los Angeles",
+                isAns: false,
+            },
+            {
+                title: "New York City",
                 isAns: true,
             },
             {
-                title: "The Good Rando",
+                title: "Miami",
                 isAns: false,
             },
             {
-                title: "Place Holder1",
-                isAns: false,
-            },
-            {
-                title: "Place Holder2",
+                title: "Seattle",
                 isAns: false,
             },
         ],
     },
     {
-        title: "How are going ",
+        title: "What pet did Ross own? ",
         choices: [
             {
-                title: "Good",
+                title: "A dog named Keith",
+                isAns: false,
+            },
+            {
+                title: "A rabbit called Lancelot",
+                isAns: false,
+            },
+            {
+                title: "A monkey named Marcel",
                 isAns: true,
             },
             {
-                title: "Bad",
+                title: "A lizard named Alistair",
                 isAns: false,
+            },
+        ],
+    },
+    {
+        title: "What is Monica skilled at ",
+        choices: [
+            {
+                title: "Bricklaying",
+                isAns: false,
+            },
+            {
+                title: "Cooking",
+                isAns: true,
+            },
+            {
+                title: "Footy",
+                isAns: false,
+            },
+            {
+                title: "Singing",
+                isAns: false,
+            },
+        ],
+    },
+    {
+        title: "What’s the name of Joey’s penguin? ",
+        choices: [
+            {
+                title: "Snowflake",
+                isAns: false,
+            },
+            {
+                title: "Waddle",
+                isAns: false,
+            },
+            {
+                title: "Bobber",
+                isAns: false,
+            },
+            {
+                title: "Huggsy",
+                isAns: true,
             },
         ],
     },
